@@ -5,9 +5,13 @@ import { graphql } from 'react-apollo'
 const SongList = ({data: { songs }}) => {
 
     return (
-        <div>
-            {songs ? songs.map(song => song.title) : "Loading songs"}
-        </div>
+        <ul className="collection">
+            {
+                songs ?
+                songs.map(song => <li className="collection-item" key={song.id}>{song.title}</li>)
+                :
+                <div>{"Loading songs..."}</div>}
+        </ul>
     )
 }
 
