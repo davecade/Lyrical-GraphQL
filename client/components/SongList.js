@@ -8,7 +8,7 @@ const SongList = ({data: { songs }}) => {
         <ul className="collection">
             {
                 songs ?
-                songs.map(song => <li className="collection-item" key={song.id}>{song.title}</li>)
+                songs.map((song, index) => <li className="collection-item" key={index}>{song.title}</li>)
                 :
                 <div>{"Loading songs..."}</div>}
         </ul>
