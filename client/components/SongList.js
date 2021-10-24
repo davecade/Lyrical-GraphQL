@@ -22,4 +22,12 @@ const SongList = ({data: { songs }}) => {
     )
 }
 
-export default graphql(query)(SongList);
+const mutation = gql`
+    mutation DeleteSong($id: ID){
+        deleteSong(id: $id) {
+        id
+        }
+    }
+`
+
+export default graphql(mutation)(graphql(query)(SongList));
