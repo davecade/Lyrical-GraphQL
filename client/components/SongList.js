@@ -4,13 +4,12 @@ import { Link } from 'react-router'
 import query from '../queries/fetchSongs'
 import gql from 'graphql-tag'
 
-const SongList = ({data: { songs }, mutate}) => {
+const SongList = ({data: { songs, refetch }, mutate}) => {
 
     const onSongDelete = (id) => {
         mutate({ 
             variables: { id: id },
-            refetchQueries: [{ query: query }]
-        })
+        }).then(refetch())
     }
 
     return (
