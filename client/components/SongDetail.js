@@ -11,4 +11,6 @@ const SongDetail = (props) => {
     )
 }
 
-export default SongDetail
+export default graphql(fetchSong, {
+    options: props => ({variables: { id: props.params.id }})
+})(SongDetail)
