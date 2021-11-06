@@ -3,12 +3,18 @@ import { graphql } from 'react-apollo'
 import fetchSong from '../queries/fetchSong'
 
 const SongDetail = (props) => {
-    console.log(props)
-    return (
-        <div>
-            <h3>Song Detail</h3>
-        </div>
-    )
+
+    const { song } = props.data
+
+    if(!song) { 
+        return <div>Loading...</div>
+    } else {
+        return (
+            <div>
+                <h3>{song.title}</h3>
+            </div>
+        )
+    }
 }
 
 export default graphql(fetchSong, {
