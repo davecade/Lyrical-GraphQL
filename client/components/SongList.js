@@ -19,7 +19,9 @@ const SongList = ({data: { songs, refetch }, mutate}) => {
                     songs ?
                     songs.map((song, index) =>
                         <li className="collection-item" key={index}>
-                            {song.title}
+                            <Link to={`songs/${song.id}`}>
+                                {song.title}
+                            </Link>
                             <i className="material-icons" style={{
                                 marginLeft: '100%',
                                 marginRight: '1rem',
