@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from 'react-apollo'
 import { Link } from 'react-router' 
 import fetchSong from '../queries/fetchSong'
+import LyricsCreate from '../components/LyricsCreate'
 
 const SongDetail = (props) => {
 
@@ -14,6 +15,7 @@ const SongDetail = (props) => {
             <div>
                 <Link to="/">Back</Link>
                 <h3>{song.title}</h3>
+                <LyricsCreate />
             </div>
         )
     }
