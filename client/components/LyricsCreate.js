@@ -16,13 +16,14 @@ class LyricsCreate extends Component {
     onSubmit(e){
         e.preventDefault();
 
+        console.log("STATE", this.state.content)
+
         this.props.mutate({
-            variable: {
+            variables: {
                 content: this.state.content,
                 songId: this.props.songId
             }
         })
-
 
     }
 
@@ -45,7 +46,7 @@ class LyricsCreate extends Component {
 }
 
 const mutation = gql`
-    mutation AddLyricToSong($content: String, $songId: ID){
+    mutation($content: String, $songId: ID){
         addLyricToSong(content: $content, songId: $songId) {
             id
             lyrics {
