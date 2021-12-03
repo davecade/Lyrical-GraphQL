@@ -1,52 +1,49 @@
-import React, { Component } from 'react';
-import gql from 'graphql-tag'
-import { graphql } from 'react-apollo'
-
+import React, { Component } from "react";
+import gql from "graphql-tag";
+import { graphql } from "react-apollo";
 
 class LyricsCreate extends Component {
-
     constructor(props) {
         super(props);
 
         this.state = {
-            content: ''
-        }
+            content: "",
+        };
     }
 
-    onSubmit(e){
+    onSubmit(e) {
         e.preventDefault();
 
-        console.log("STATE", this.state.content)
-
-        this.props.mutate({
-            variables: {
-                content: this.state.content,
-                songId: this.props.songId
-            }
-        }).then(() => this.setState({content: ''}))
-
+        this.props
+            .mutate({
+                variables: {
+                    content: this.state.content,
+                    songId: this.props.songId,
+                },
+            })
+            .then(() => this.setState({ content: "" }));
     }
 
-    
     render() {
-
         return (
             <div>
                 <form onSubmit={(e) => this.onSubmit(e)}>
                     <label>Add a Lyric</label>
                     <input
-                        onChange={event => this.setState({ content: event.target.value })}
+                        onChange={(event) =>
+                            this.setState({ content: event.target.value })
+                        }
                         value={this.state.content}
                         type="text"
                     />
                 </form>
             </div>
-        )
+        );
     }
 }
 
 const mutation = gql`
-    mutation($content: String, $songId: ID){
+    mutation ($content: String, $songId: ID) {
         addLyricToSong(content: $content, songId: $songId) {
             id
             lyrics {
@@ -54,6 +51,6 @@ const mutation = gql`
             }
         }
     }
-`
+`;
 
-export default graphql(mutation)(LyricsCreate)
+export default graphql(mutation)(LyricsCreate);
