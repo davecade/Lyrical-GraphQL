@@ -11,20 +11,26 @@ class LyricList extends Component {
 
     renderLyrics() {
         return this.props.lyrics.map(({ id, content, likes }) => (
-            <li key={id} className="collection-item">
+            <li key={id} className="collection-item" style={{
+                display: "flex",
+                justifyContent: "space-between",
+            }}>
                 {content}
-                <i
-                    className="material-icons"
-                    style={{
-                        marginLeft: "100%",
-                        marginRight: "1rem",
-                        cursor: "pointer",
-                    }}
-                    onClick={() => this.onLike(id)}
-                >
-                    thumb_up
-                </i>
-                { likes }
+                <div style={{
+                            display: "flex"
+                        }}>
+                    <i
+                        className="material-icons"
+                        onClick={() => this.onLike(id)}
+                        style={{
+                            marginRight: "1rem",
+                            cursor: 'pointer'
+                        }}
+                    >
+                        thumb_up
+                    </i>
+                    { likes }
+                </div>
             </li>
         ));
     }
